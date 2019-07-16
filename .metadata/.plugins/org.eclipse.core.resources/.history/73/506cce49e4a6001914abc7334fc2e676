@@ -1,0 +1,9 @@
+package com.visa.training.jdbc;
+
+public class ProductUtil {
+
+	public static void main(String[] args) {
+		
+		Product p = new Product(1,"Bottle", 50, 2);
+	}
+}

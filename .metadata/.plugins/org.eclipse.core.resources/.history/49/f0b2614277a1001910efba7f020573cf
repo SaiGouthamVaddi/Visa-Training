@@ -1,0 +1,44 @@
+class Circle1
+{
+	private int radius;
+	Circle1(int radius)
+	{
+		this.radius = radius;
+	}
+	
+	public String getShapeName()
+	{
+		return "Circle";
+	}
+	
+	public double computeArea()
+	{
+		return 3.14*radius*radius;
+	}
+}
+
+class Rectangle1
+{
+	private int width, height;
+	Rectangle1(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+				
+	}
+	public String getShapeName()
+	{
+		return "Rectangle";
+	}
+	
+	public double computeArea()
+	{
+		return width*height;
+	}
+}
+public class ShapesApp {
+	Object[] shapes = new Object[10];
+	public static void main(String[] args) {
+		
+	}
+}

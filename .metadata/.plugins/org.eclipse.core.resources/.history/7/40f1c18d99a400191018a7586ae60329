@@ -1,0 +1,6 @@
+package snippet;
+
+public class Snippet {
+	String s = words.stream().reduce("", String::concat);
+}
+

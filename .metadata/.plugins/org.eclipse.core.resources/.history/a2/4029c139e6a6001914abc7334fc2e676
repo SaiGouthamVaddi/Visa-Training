@@ -1,0 +1,15 @@
+package com.visa.training.jdbc;
+
+import java.sql.SQLException;
+
+public class ProductUtil {
+
+	public static void main(String[] args) throws SQLException {
+		
+		/*
+		 * Product p = new Product(1,"Bottle", 50, 2); ProductDAO.save(p);
+		 */
+		
+		Product p = ProductDAO.findById(1);
+	}
+}

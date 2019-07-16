@@ -1,0 +1,5 @@
+package com.visa.training.collections.lambda;
+
+public class StringUtils {
+
+}

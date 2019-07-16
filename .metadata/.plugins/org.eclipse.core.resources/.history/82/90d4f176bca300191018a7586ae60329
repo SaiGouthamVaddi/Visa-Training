@@ -1,0 +1,7 @@
+package com.visa.training.collections.lambda;
+
+@FunctionalInterface
+public interface TwoStringPredicate<T>{
+	
+	public abstract <T> String compare(T o1, T o2);
+}

@@ -1,0 +1,34 @@
+package com.visa.training.collections.lambda;
+import java.util.*;
+public class BasicLambda {
+	
+	public static void main(String[] args) {
+		String[] words = {"Goutham", "Nikhil", "Mohan", "Prasanth", "Sree"};
+		System.out.println(Arrays.asList(words));
+		
+//sort by smallest to longest length words
+		Collections.sort(Arrays.asList(words), (s1, s2)-> s1.length() - s2.length());
+		System.out.println(Arrays.asList(words));
+		
+//sort by longest to smallest length words
+		Collections.sort(Arrays.asList(words), (s1, s2) -> s2.length() - s1.length());
+		System.out.println(Arrays.asList(words));
+		
+//sort by first alphabet using anonymous methods
+		Collections.sort(Arrays.asList(words), new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				// TODO Auto-generated method stub
+				return o1.charAt(0)-o2.charAt(0);
+			}
+			
+		});
+		
+		System.out.println(Arrays.asList(words));
+	}
+
+//strings containing e 
+		
+	
+}

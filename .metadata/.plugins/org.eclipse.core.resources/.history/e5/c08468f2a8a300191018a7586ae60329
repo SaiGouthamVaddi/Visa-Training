@@ -1,0 +1,11 @@
+package com.visa.training.collections.lambda;
+import java.util.*;
+public class BasicLambda {
+	
+	public static void main(String[] args) {
+		String[] words = {"Goutham", "Nikhil", "Mohan", "Prasanth", "Sree"};
+		System.out.println(Arrays.asList(words));
+		Collections.sort(Arrays.asList(words), (s1, s2)-> s1.length() - s2.length());
+		System.out.println(Arrays.asList(words));
+	}
+}

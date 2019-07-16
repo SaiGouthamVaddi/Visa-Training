@@ -1,0 +1,125 @@
+package com.visa.training.jdbc;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+//DAO class has CRUD + Query methods
+public class ProductDAO {
+
+	public static int save(Product p) throws SQLException {
+		//Insert
+		Connection c = JdbcUtil.getConnection();
+		int generatedId = 0;
+		try {
+			/*
+			 * Statement smt = c.createStatement(); String query =
+			 * "insert into product(product_id, product_name, product_price, product_qoh) values "
+			 * + "("+toBeSaved.getId()+", '"+toBeSaved.getName()+"' ,"+toBeSaved.getPrice()+
+			 * ","+toBeSaved.getQoh()+");"; smt.executeUpdate(query);
+			 */
+			String pSql = "insert into product(product_name,product_price,product_qoh) values(?,?,?)";
+            PreparedStatement s = c.prepareStatement(pSql, Statement.RETURN_GENERATED_KEYS);
+            //s.setInt(1, p.getId());
+            s.setString(1, p.getName());
+            s.setFloat(2, p.getPrice());
+            s.setInt(3, p.getQoh());
+            s.executeUpdate();
+            ResultSet keys = s.getGeneratedKeys();
+            keys.next();
+            generatedId = keys.getInt(1);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			c.close();
+		}
+		return generatedId;
+	}
+	
+	public static Product findById(int id) throws SQLException {
+		
+		
+		try(Connection c = JdbcUtil.getConnection()) {
+			String query = "Select * from product where product_id = "+id;
+			PreparedStatement s = c.prepareStatement(query);
+			
+			 ResultSet r = s.executeQuery();
+			 if(r.next()) {
+				 Product p = new Product();
+				 p.setId(r.getInt("product_id"));
+				 p.setName(r.getString("product_name"));
+				 p.setPrice(r.getFloat("product_price"));
+				 p.setQoh(r.getInt("product_qoh"));
+				 return p; 
+			 }
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			c.close();
+		}
+		//Read based on id
+		return null;
+	}
+	
+	public static List<Product> findAll() throws SQLException{
+		List< Product > l = new ArrayList<>();
+		Connection c = JdbcUtil.getConnection();
+		try {
+			Statement s = c.createStatement();
+			String query = "Select * from product;";
+			ResultSet r = s.executeQuery(query);
+			while(r.next())
+			{
+				Product p = new Product();
+				p.setId(r.getInt("product_id"));
+				 p.setName(r.getString("product_name"));
+				 p.setPrice(r.getFloat("product_price"));
+				 p.setQoh(r.getInt("product_qoh"));
+				 l.add(p);
+				
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			c.close();
+		}
+		return l;
+		//read all
+	}
+	
+	public static void remove(int id) throws SQLException
+	{
+		//Remove a record based on id;
+		
+		try(Connection c = JdbcUtil.getConnection()){
+			Statement s = c.createStatement();
+			String query = "Delete from product where product_id = "+id;
+			s.executeUpdate(query);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public void update(Product updated) {
+	
+		try(Connection c = JdbcUtil.getConnection()){
+			
+			Statement s = c.createStatement();
+			String query = "Update product set product_price = 40 where product_id = 2 ";
+			s.executeUpdate(query);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+	}
+}

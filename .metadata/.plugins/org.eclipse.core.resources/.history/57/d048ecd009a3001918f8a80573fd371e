@@ -1,0 +1,21 @@
+package com.visa.training.collections;
+
+public class Circle {
+
+		private int radius;
+
+		public Circle(int radius) {
+			super();
+			this.radius = radius;
+		}
+		
+		public String getShape() {
+			return "Circle";
+		}
+		
+		public double getArea() {
+			return 3.14*radius*radius;
+		}
+}
+
+

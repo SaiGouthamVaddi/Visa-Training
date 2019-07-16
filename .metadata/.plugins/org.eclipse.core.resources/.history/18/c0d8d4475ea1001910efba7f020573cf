@@ -1,0 +1,69 @@
+
+public class DOWFinder {
+
+	static boolean leapYear(int year)
+	{
+		if(year % 400 == 0)
+			return true;
+		else if(year % 100 == 0)
+			return false;
+		else if(year%4 == 0)
+			return true;
+		return false;
+	}
+	static int countDays(int[] days, int month)
+	{
+		int daysCount = 0;
+		for(int i=0; i < month; i++)
+		{
+			daysCount+=days[i];
+		}
+		
+		return daysCount;
+	}
+	static int findDOW(int day, int month, int year)
+	{
+		int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};
+		int numberOfDays = (year-1900)*365;
+		numberOfDays += (year-1900)/4;
+		
+		boolean currentYear = leapYear(year);
+		if(currentYear && month <=2 )
+		{
+			numberOfDays -= 1;
+		}
+		
+		numberOfDays += countDays(days,month);
+		return numberOfDays%7;
+	}
+	
+	public static void main(String[] args) {
+		
+		int weekday = findDOW(8, 7, 2019);
+		switch(weekday)
+		{
+		case 0:
+			System.out.println("Sunday");
+			break;
+		case 1:
+			System.out.println("Monday");
+			break;
+		case 2:
+			System.out.println("Tuesday");
+			break;
+		case 3:
+			System.out.println("Wednesday");
+			break;
+		case 4:
+			System.out.println("Thursday");
+			break;
+		case 5:
+			System.out.println("Friday");
+			break;
+		case 6:
+			System.out.println("Saturday");
+			break;
+		}
+		
+	}
+}

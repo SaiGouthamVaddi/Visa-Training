@@ -1,0 +1,83 @@
+
+class ChemicalElement {
+	
+	private int atomicNumber;
+	private char symbolicName;
+	private String fullName;
+	
+	ChemicalElement(int atomicNumber, char symbolicName, String fullName)
+	{
+		this.atomicNumber = atomicNumber;
+		this.symbolicName = symbolicName;
+		this.fullName = fullName;
+	}
+	
+	public boolean equals(Object o)
+	{
+		ChemicalElement c = (ChemicalElement)o;
+		if(c.atomicNumber == atomicNumber && c.symbolicName == symbolicName &&
+				c.fullName.equals(fullName))
+				{
+					return true;
+				}
+		return false;	
+	}
+	
+	public boolean isTransitionMetal()
+	{
+		
+		return (atomicNumber >= 21 && atomicNumber <= 31)? true : 
+				(atomicNumber >= 39 && atomicNumber <= 48)? true :
+				(atomicNumber >= 72 && atomicNumber <= 80)? true :
+					(atomicNumber >= 104 && atomicNumber <= 112) ? true : false;	
+					
+					
+		/*
+		 * if((atomicNumber >= 21 && atomicNumber <= 31)||(atomicNumber >= 39 &&
+		 * atomicNumber <= 48) ||(atomicNumber >= 72 && atomicNumber <=
+		 * 80)||(atomicNumber >= 104 && atomicNumber <= 112)) return true; return false;
+		 */
+	}
+	
+	public boolean isMetal()
+	{
+		int[] metals = {13, 49, 50, 81, 82 , 83, 113, 114, 115, 116};
+			
+				
+		switch(atomicNumber) 
+		{
+		case 13: return true;
+		case 49: return true;
+		case 50: return true;
+		case 81: return true;
+		case 82: return true;
+		case 83: return true;
+		case 113: return true;
+		case 114: return true;
+		case 115: return true;
+		case 116: return true;
+		}
+				
+				
+				return false;
+	}
+	
+}
+
+public class ChemicalElementApp2{
+	
+	public static void main(String[] args) {
+		
+		ChemicalElement ce = new ChemicalElement(1, 'H', "Hydrogen");
+		ChemicalElement ce1 = new ChemicalElement(8, 'O', "Oxygen");
+		
+		if(ce.equals(ce1))
+		{
+			System.out.println("Both are same");
+		}
+		else
+			System.out.println("Both are different");
+		
+	}
+
+}

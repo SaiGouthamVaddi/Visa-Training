@@ -1,0 +1,92 @@
+package com.visa.training.jdbc;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+//DAO class has CRUD + Query methods
+public class ProductDAO {
+
+	public static void save(Product toBeSaved) throws SQLException {
+		//Insert
+		Connection c = JdbcUtil.getConnection();
+		
+		try {
+			Statement smt = c.createStatement();
+			String query = "insert into product(product_id, product_name, product_price, product_qoh) values "+
+							"("+toBeSaved.getId()+", '"+toBeSaved.getName()+"' ,"+toBeSaved.getPrice()+","+toBeSaved.getQoh()+");";
+			smt.executeUpdate(query);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			c.close();
+		}
+		
+	}
+	
+	public static Product findById(int id) throws SQLException {
+		
+		Connection c = JdbcUtil.getConnection();
+		try {
+			Statement s = c.createStatement();
+			String query = "Select * from product where product_id = "+id;
+			 ResultSet r = s.executeQuery(query);
+			 if(r.next()) {
+				 Product p = new Product();
+				 p.setId(r.getInt("product_id"));
+				 p.setName(r.getString("product_name"));
+				 p.setPrice(r.getFloat("product_price"));
+				 p.setQoh(r.getInt("product_qoh"));
+				 return p; 
+			 }
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			c.close();
+		}
+		//Read based on id
+		return null;
+	}
+	
+	public static List<Product> findAll() throws SQLException{
+		List< Product > l = new ArrayList<>();
+		Connection c = JdbcUtil.getConnection();
+		try {
+			Statement s = c.createStatement();
+			String query = "Select * from product;";
+			ResultSet r = s.executeQuery(query);
+			while(r.next())
+			{
+				Product p = new Product();
+				p.setId(r.getInt("product_id"));
+				 p.setName(r.getString("product_name"));
+				 p.setPrice(r.getFloat("product_price"));
+				 p.setQoh(r.getInt("product_qoh"));
+				 l.add(p);
+				
+			}
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally {
+			c.close();
+		}
+		return l;
+		//read all
+	}
+	
+	public void remove(int id)
+	{
+		//Remove a record based on id;
+	}
+	
+	public void update(Product updated) {
+	
+	
+	}
+}

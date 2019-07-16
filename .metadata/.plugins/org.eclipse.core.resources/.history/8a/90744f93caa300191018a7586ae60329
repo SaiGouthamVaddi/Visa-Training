@@ -1,0 +1,35 @@
+package com.visa.training.collections.lambda;
+
+import java.util.*;
+import java.util.function.Predicate;
+
+public class Match {
+	public static void main(String[] args) {
+		exe();
+	}
+
+	private static void exe() {
+		// TODO Auto-generated method stub
+		String[] words = {"This", "string", "is", "for", "testing"};
+		
+		allMatches(Arrays.asList(words), s -> s.length() > 3);
+		
+	}
+
+	private static<T> void allMatches(List<T> words, Predicate<T> p) {
+		// TODO Auto-generated method stub
+		List<T> l = new ArrayList<>();
+		for(T word: words)
+		{
+			if(p.test(word))
+			{
+				l.add(word);
+			}
+		}
+		
+		System.out.println(l);
+		
+	}
+
+	
+}

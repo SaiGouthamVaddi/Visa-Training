@@ -20,6 +20,7 @@ public class cart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			PrintWriter out = response.getWriter();
 			HttpSession session = request.getSession(true);
+			//use String uri = request.getRequestUri and find which one invoked servlet
 			if(request.getParameterValues("bikebox")!=null)
 			{
 				String[] bikes = request.getParameterValues("bikebox") ;

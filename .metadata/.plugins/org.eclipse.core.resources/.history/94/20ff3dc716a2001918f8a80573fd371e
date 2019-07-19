@@ -1,9 +1,0 @@
-
-public class StackApp {
-
-	public static void main(String[] args) {
-		StackUser su = new StackUser(10);
-		su.fill(su);
-		su.empty(su);
-	}
-}

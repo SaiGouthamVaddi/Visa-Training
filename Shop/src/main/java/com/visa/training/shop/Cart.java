@@ -1,6 +1,7 @@
 package com.visa.training.shop;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -20,7 +21,8 @@ public class Cart extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		PrintWriter out = response.getWriter();
+		out.println("<b>H</b>");
 		String name = request.getParameter("name");
 		String price = request.getParameter("price");
 		String qoh = request.getParameter("qoh");

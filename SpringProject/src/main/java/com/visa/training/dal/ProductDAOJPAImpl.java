@@ -2,6 +2,7 @@ package com.visa.training.dal;
 
 import java.util.List;
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -33,7 +34,7 @@ public class ProductDAOJPAImpl implements ProductDAO{
 	@Override
 	public List<Product> findAll() {
 		// TODO Auto-generated method stub
-		return em.createQuery("Select p from Product as p").getResultList();
+		return em.createQuery("Select p from product as p").getResultList();
 	}
 
 	@Override

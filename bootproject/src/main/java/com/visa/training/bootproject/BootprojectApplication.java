@@ -10,11 +10,11 @@ import com.visa.training.bootproject.ui.ProductConsoleUi;
 public class BootprojectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BootprojectApplication.class, args);
-		/*
-		 * ProductConsoleUi ui = springContainer.getBean(ProductConsoleUi.class);
-		 * ui.createProductWithUi();
-		 */
+		ApplicationContext springContainer = SpringApplication.run(BootprojectApplication.class, args);
+		
+		 ProductConsoleUi ui = springContainer.getBean(ProductConsoleUi.class);
+		 ui.createProductWithUi();
+		 
 	
 	}
 

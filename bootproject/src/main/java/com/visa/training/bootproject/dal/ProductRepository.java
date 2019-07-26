@@ -16,7 +16,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer>{
 	public List<Product> findByPriceLessThan(float somePrice);
 	public List<Product> findByName(String name);
 	public List<Product> findByNameLike(float somePrice);
-	
 	@Query("select p from product as p")
 	public List<Product> myComplexQuery();
 	

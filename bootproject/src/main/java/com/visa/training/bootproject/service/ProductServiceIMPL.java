@@ -50,7 +50,7 @@ public class ProductServiceIMPL implements ProductService{
 	public void deleteProduct(int id) {
 		// TODO Auto-generated method stub
 		Product p = dao.findById(id);
-		if(p.getPrice()*p.getQoh() > 1000) {
+		if(p.getPrice()*p.getQoh() > 10000000) {
 			throw new IllegalArgumentException("Can't remove when value > 1000");
 		}else
 		{
